@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dinuk Wijesinghe Portfolio</title>
+<meta name="description" content="Dinuk Ashan Wijesinghe: graduate mechatronics, robotics and automation engineer. First Class Honours, Western Sydney University.">
+<style>
+:root{--bg:#f6f7fb;--fg:#12141c;--mut:#5b6072;--card:#fff;--line:#e2e5ef;--a:#2563eb;--b:#7c3aed;--vis:#eef1fb;--grad:linear-gradient(90deg,var(--a),var(--b));color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0d14;--fg:#eef0f7;--mut:#9aa1b5;--card:#131622;--line:#23283a;--a:#60a5fa;--b:#a78bfa;--vis:#0f1220;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b0d14;--fg:#eef0f7;--mut:#9aa1b5;--card:#131622;--line:#23283a;--a:#60a5fa;--b:#a78bfa;--vis:#0f1220;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--a);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4{text-wrap:balance}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* nav */
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:800;letter-spacing:-.02em;text-decoration:none;white-space:nowrap;margin-right:16px}
+.logo i{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top nav{display:flex;gap:20px;font-size:.9rem;overflow-x:auto;scrollbar-width:none}
+.top nav a{text-decoration:none;color:var(--mut);white-space:nowrap}
+.top nav a:hover{color:var(--fg)}
+
+/* hero */
+.hero{padding:52px 0 4px;position:relative}
+.hero::before{content:"";position:absolute;width:560px;height:560px;right:-160px;top:-180px;background:radial-gradient(circle,color-mix(in srgb,var(--b) 38%,transparent),transparent 65%);z-index:-1;pointer-events:none}
+.pill{display:inline-block;font-size:.8rem;padding:5px 14px;border:1px solid var(--line);border-radius:99px;color:var(--mut);background:var(--card)}
+h1{font-size:clamp(2.2rem,5.6vw,3.6rem);line-height:1.05;letter-spacing:-.035em;margin:18px 0 16px}
+h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lede{max-width:56ch;color:var(--mut);font-size:1.12rem;margin:0 0 26px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:.95rem;display:inline-block;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:var(--grad);color:#fff}
+.btn.s{border:1px solid var(--line);background:var(--card)}
+.hgrid{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:center}
+@media(max-width:860px){.hgrid{grid-template-columns:1fr}}
+.glance{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 26px}
+.glance h3{margin:0 0 14px;font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--a)}
+.glance dl{margin:0}
+.glance dl>div{padding:11px 0;border-top:1px solid var(--line)}
+.glance dl>div:first-child{border-top:0;padding-top:0}
+.glance dt{font-size:.75rem;color:var(--mut)}
+.glance dd{margin:1px 0 0;font-weight:600;font-size:.95rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:36px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.stat b{display:block;font-size:1.7rem;letter-spacing:-.02em}
+.stat span{font-size:.82rem;color:var(--mut)}
+.reel{margin-top:18px;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000}
+.reel video{width:100%;aspect-ratio:21/9;object-fit:cover}
+.reel .cap{position:absolute;left:16px;bottom:14px;color:#fff;font-size:.8rem;font-weight:600;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);padding:5px 12px;border-radius:99px}
+.reel .snd{position:absolute;right:14px;bottom:12px;background:#fff;color:#12141c;border:0;border-radius:10px;padding:8px 14px;font-size:.85rem;font-weight:600;cursor:pointer}
+@media(max-width:620px){.reel video{aspect-ratio:16/10}}
+
+/* sections */
+section{padding:56px 0 0}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--a);font-weight:700}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.025em;margin:6px 0 28px;line-height:1.15}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.shead p{margin:0 0 30px;color:var(--mut);font-size:.92rem;max-width:44ch}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 22px}
+.filters button{border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:99px;font-size:.85rem;cursor:pointer;color:var(--mut)}
+.filters button:hover{color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#fff}
+.filters button span{font-size:.72rem;opacity:.75;margin-left:4px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.card{grid-column:span 2;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+a.card:hover,.card.plain:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px color-mix(in srgb,var(--a) 45%,transparent)}
+.card[hidden]{display:none}
+.vis{background:var(--vis);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden}
+.vis img{width:100%;height:100%;object-fit:cover}
+.vis img.fit{object-fit:contain;padding:10px;background:#fff}
+.vis svg{width:100%;height:100%}
+.body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.body h3{margin:0 0 2px;font-size:1.12rem;letter-spacing:-.01em;line-height:1.3}
+.meta{font-size:.8rem;color:var(--mut);margin:0 0 10px}
+.body p.d{margin:0;color:var(--mut);font-size:.93rem}
+.body ul{margin:0;padding-left:18px;color:var(--mut);font-size:.93rem}
+.body li{margin:3px 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chips span{font-size:.74rem;padding:3px 10px;border-radius:99px;background:var(--vis);border:1px solid var(--line);color:var(--a)}
+.more{margin-top:auto;padding-top:14px;font-size:.85rem;font-weight:600;color:var(--a)}
+.card.feature{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr}
+.card.feature .vis{aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line);min-height:300px}
+.card.plain.feature .vis{min-height:220px}
+.card.plain.feature .vis svg{max-height:240px}
+.big{display:flex;gap:26px;margin:14px 0}
+.big b{font-size:2rem;display:block;line-height:1.1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.big span{font-size:.8rem;color:var(--mut)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.card{grid-column:span 1}.card.feature{grid-column:1/-1}}
+@media(max-width:720px){.card.feature{grid-template-columns:1fr}.card.feature .vis{border-right:0;border-bottom:1px solid var(--line);min-height:200px}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.card,.card.feature{grid-column:1/-1}}
+
+/* experience */
+.stack{display:grid;gap:18px}
+.exp{padding:26px 28px;display:grid;grid-template-columns:1fr 1.7fr;gap:28px;align-items:start}
+@media(max-width:720px){.exp{grid-template-columns:1fr;gap:14px}}
+.exp h3{margin:0 0 4px;font-size:1.2rem}
+.exp-l .meta{margin-bottom:14px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini div{background:var(--vis);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.mini b{display:block;font-size:1.25rem;line-height:1.15;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mini span{font-size:.74rem;color:var(--mut)}
+.exp ul{align-self:center}
+.exp ul{margin:0;padding-left:18px;color:var(--mut)}
+.exp li{margin:4px 0}
+
+/* certificates */
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.certs{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.certs{grid-template-columns:1fr}}
+.cert{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.cert:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px color-mix(in srgb,var(--a) 45%,transparent)}
+.cert button{display:block;width:100%;padding:18px 18px 0;border:0;background:var(--vis);cursor:zoom-in;border-bottom:1px solid var(--line)}
+.cert img{width:100%;aspect-ratio:1/1.1;object-fit:cover;object-position:top;border-radius:8px 8px 0 0;box-shadow:0 6px 24px -12px rgba(0,0,0,.35)}
+.cert figcaption{padding:16px 20px 20px;display:grid;gap:2px}
+.cert figcaption b{font-size:1rem}
+.cert figcaption span{font-size:.84rem;color:var(--mut)}
+
+/* skills / beyond */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.skills .card{padding:20px 22px;grid-column:auto}
+.skills h3{margin:0 0 6px;font-size:1rem}
+.skills p{margin:0;color:var(--mut);font-size:.92rem}
+.tg{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--a);font-weight:700;margin-bottom:6px}
+
+/* contact */
+.cta{margin:64px 0 0;padding:44px 28px;border-radius:22px;text-align:center;color:#fff;background:linear-gradient(120deg,var(--a),var(--b))}
+.cta h2{margin:0 0 10px;color:#fff}
+.cta p{margin:0 auto;max-width:52ch;opacity:.92}
+.cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.cta .btn.w{background:#fff;color:#12141c}
+.cta .btn.o{border:1px solid rgba(255,255,255,.6);color:#fff}
+footer{padding:28px 0 48px;text-align:center;color:var(--mut);font-size:.85rem}
+
+/* detail view */
+.detail{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;display:none}
+.detail.open{display:block;animation:rise .28s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body.locked{overflow:hidden}
+.dbar{position:sticky;top:0;z-index:2;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.dbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.dbar button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:7px 14px;cursor:pointer;font-weight:600;font-size:.88rem;display:inline-flex;gap:8px;align-items:center}
+.dbar .navp{display:flex;gap:8px}
+.dhero{padding:44px 0 26px;position:relative}
+.dhero::before{content:"";position:absolute;width:480px;height:480px;right:-180px;top:-200px;background:radial-gradient(circle,color-mix(in srgb,var(--b) 30%,transparent),transparent 65%);z-index:-1;pointer-events:none}
+.dhero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.dhero .tags span{font-size:.76rem;padding:4px 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--mut)}
+.dhero .tags span:first-child{color:var(--a);font-weight:600}
+.dhero h2{font-size:clamp(2rem,4.8vw,3rem);letter-spacing:-.03em;margin:0;line-height:1.08;max-width:22ch}
+.dhero .summary{font-size:1.1rem;color:var(--mut);max-width:62ch;margin:16px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:26px}
+.facts div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.facts small{display:block;font-size:.74rem;color:var(--mut)}
+.facts strong{font-weight:600;font-size:.95rem}
+.dmedia{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.dmedia img{width:100%;max-height:620px;object-fit:contain;background:#fff}
+.dmedia video{width:100%;max-height:620px;background:#000}
+.dbody{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;padding:40px 0}
+@media(max-width:900px){.dbody{grid-template-columns:1fr;gap:26px}}
+.prose h3{font-size:1.3rem;letter-spacing:-.015em;margin:28px 0 10px}
+.prose h3:first-child{margin-top:0}
+.prose p{margin:0 0 14px;max-width:66ch}
+.prose ul{margin:0 0 14px;padding-left:20px}
+.prose li{margin-bottom:7px;max-width:64ch}
+.prose li::marker{color:var(--a)}
+.eq{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;background:var(--vis);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto;margin:6px 0 16px;white-space:pre}
+.side{display:flex;flex-direction:column;gap:16px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi b{display:block;font-size:1.6rem;letter-spacing:-.02em;line-height:1.15;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.8rem;color:var(--mut)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.box h4{font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--a);margin:0 0 10px}
+.tbl{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
+.tbl th{font-size:.74rem;color:var(--mut);font-weight:600}
+.tbl tr:last-child td{border-bottom:0}
+.tblwrap{overflow-x:auto}
+.figs-title{font-size:1.4rem;letter-spacing:-.02em;margin:8px 0 16px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding-bottom:20px}
+.gal figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.gal button{display:block;width:100%;padding:0;border:0;background:#fff;cursor:zoom-in}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.gal figcaption{padding:10px 12px;font-size:.84rem;color:var(--mut)}
+.gal figure.tall{grid-row:span 2;display:flex;flex-direction:column}
+.gal figure.tall button{flex:1;min-height:0}
+.gal figure.tall img{height:100%;aspect-ratio:3/4;object-fit:cover}
+.nextp{padding:24px 0 64px}
+.nextp button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 26px;border:0;border-radius:18px;background:linear-gradient(120deg,var(--a),var(--b));color:#fff;cursor:pointer;text-align:left}
+.nextp small{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;opacity:.85}
+.nextp strong{font-size:1.25rem;letter-spacing:-.01em}
+
+/* lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:96vw;max-height:96vh;overflow:visible}
+dialog.lb::backdrop{background:rgba(8,10,18,.88)}
+dialog.lb img{max-width:94vw;max-height:84vh;object-fit:contain;background:#fff;border-radius:12px}
+dialog.lb p{color:#e6e9ef;font-size:.9rem;margin:12px 0 0;text-align:center}
+dialog.lb .x{position:fixed;top:16px;right:18px;background:#fff;color:#12141c;border:0;padding:9px 15px;font-weight:600;cursor:pointer;border-radius:10px}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#top">Dinuk <i>Wijesinghe</i></a>
+  <nav aria-label="Main"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#certificates">Certificates</a><a href="#skills">Skills</a><a href="#beyond">Beyond work</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap">
+  <div class="hero">
+    <div class="hgrid"><div><span class="pill">First Class Honours · Dean's List · GPA 6.2 / 7.0</span>
+    <h1>Engineering <span>robots that see</span> and machines that last.</h1>
+    <p class="lede">I'm Dinuk Ashan Wijesinghe, a Mechatronics, Robotics &amp; Automation graduate from Western Sydney University. I work across robotic perception, control systems, mechanical design and industrial automation.</p>
+    <div class="btns"><a class="btn p" href="#projects">View my projects</a><a class="btn s" href="mailto:dinukwijesinghe12@gmail.com">Email me</a></div></div>
+    <aside class="glance"><h3>At a glance</h3><dl><div><dt>Degree</dt><dd>B.Eng (Honours), Robotics &amp; Mechatronics · Class I</dd></div><div><dt>University</dt><dd>Western Sydney University</dd></div><div><dt>Focus areas</dt><dd>Robotic perception · Controls · Mechanical design · Automation</dd></div><div><dt>Availability</dt><dd>Graduate roles across Australia · Happy to relocate</dd></div><div><dt>Working rights</dt><dd>Full Australian working rights</dd></div></dl></aside></div>
+    <div class="stats">
+      <div class="stat"><b class="gt">94.8%</b><span>cobot detection accuracy</span></div>
+      <div class="stat"><b class="gt">82→94%</b><span>YOLO mAP at Droidex</span></div>
+      <div class="stat"><b class="gt">20,000+</b><span>image datasets worked on</span></div>
+      <div class="stat"><b class="gt">±0.1 mm</b><span>CNC part tolerance</span></div>
+    </div>
+    <div class="reel">
+      <video src="img/thesis-demo.mp4" poster="img/thesis-demo-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="UR3 cobot perception pipeline running in the lab"></video>
+      <span class="cap">Honours thesis · UR3 perception demo</span>
+      <button type="button" class="snd" id="heroSound" aria-pressed="false">Sound on</button>
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="shead"><div><div class="eyebrow">Work</div><h2>Selected projects</h2></div><p>Open any project for the full case study, results and figures.</p></div>
+    <div class="filters" role="group" aria-label="Filter projects" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="experience">
+    <div class="eyebrow">Experience</div><h2>Where I've worked and studied</h2>
+    <div class="stack">
+      <article class="card exp">
+        <div class="exp-l"><h3>Mechatronics Engineering Intern</h3><p class="meta">Droidex Technologies · Oct 2025 – Apr 2026</p>
+          <div class="mini"><div><b>15</b><span>drone parts designed</span></div><div><b>−15%</b><span>peak stress</span></div><div><b>82→94%</b><span>YOLO mAP</span></div><div><b>10</b><span>drawings to AS 1100</span></div></div>
+          <div class="chips"><span>SolidWorks</span><span>FEA</span><span>GD&amp;T</span><span>YOLO</span><span>Datasets</span></div></div>
+        <ul><li>Designed 15 drone components in SolidWorks and reduced peak stress by 15% through FEA-led geometry revisions.</li><li>Produced 10 manufacturing drawings to AS 1100, applying GD&amp;T, tolerancing and DFM.</li><li>Improved YOLO detection mAP from 82% to 94% on a 1,500-image set by curating annotations and retraining.</li><li>Worked on leopard and bushfire detection datasets of 20,000+ images.</li><li>Liaised with clients and stakeholders on requirements, design changes, progress updates and deliverables.</li></ul>
+      </article>
+      <article class="card exp">
+        <div class="exp-l"><h3>Bachelor of Engineering (Honours)</h3><p class="meta">Western Sydney University · 2023 – 2026</p>
+          <div class="mini"><div><b>Class I</b><span>Honours</span></div><div><b>6.2 / 7</b><span>GPA</span></div><div><b>6.8</b><span>Spring 2024 GPA</span></div><div><b>HD</b><span>Honours thesis</span></div></div>
+          <div class="chips"><span>Robotics</span><span>Mechatronics</span><span>Automation</span></div></div>
+        <ul><li>Robotics &amp; Mechatronics, Minor in Automation. Conferred 19 August 2026 with Honours Class I.</li><li>GPA 6.2 / 7.0. Dean's Merit List 2024, with a 6.8 GPA in Spring.</li><li>Honours thesis on cobot perception awarded a High Distinction.</li><li>Formula SAE suspension team: designed a suspension mounting bracket for the student race car.</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="shead"><div><div class="eyebrow">Credentials</div><h2>Certificates</h2></div><p>Click a certificate to view it full size.</p></div>
+    <div class="certs">
+      <figure class="cert"><button type="button" data-full="img/cert-testamur.jpg"><img src="img/cert-testamur.jpg" alt="Western Sydney University testamur: Bachelor of Engineering (Honours), Robotics and Mechatronics, Honours Class I" loading="lazy"></button>
+        <figcaption><b>Bachelor of Engineering (Honours), Class I</b><span>Western Sydney University · Aug 2026</span></figcaption></figure>
+      <figure class="cert"><button type="button" data-full="img/cert-deans.jpg"><img src="img/cert-deans.jpg" alt="2024 Dean's Merit List certificate" loading="lazy"></button>
+        <figcaption><b>Dean's Merit List 2024</b><span>School of Engineering, Design and Built Environment</span></figcaption></figure>
+      <figure class="cert"><button type="button" data-full="img/cert-amr.jpg"><img src="img/cert-amr.jpg" alt="Certificate of Completion: Introduction to Autonomous Mobile Robots" loading="lazy"></button>
+        <figcaption><b>Introduction to Autonomous Mobile Robots</b><span>Offered by OMRON via WSU · Oct 2025</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">Toolkit</div><h2>Skills</h2>
+    <div class="skills">
+      <div class="card"><h3>Robotics &amp; vision</h3><p>ROS 2, YOLOv8, OpenCV, PCL, Intel RealSense, Gazebo, UR3 integration, LLM integration</p></div>
+      <div class="card"><h3>Programming &amp; controls</h3><p>Python, C++, MATLAB, Simulink, PID / PD tuning, particle filters, CNNs</p></div>
+      <div class="card"><h3>CAD &amp; manufacturing</h3><p>SolidWorks, ANSYS FEA, GD&amp;T, AS 1100 drawings, DFM / DFA, CNC machining, SolidCAM</p></div>
+      <div class="card"><h3>Automation &amp; electronics</h3><p>PLC ladder logic (including conveyor start/stop and seal-in control), SCADA, op-amp circuits, PCB layout, Arduino</p></div>
+    </div>
+  </section>
+
+  <section id="beyond">
+    <div class="eyebrow">Outside the lab</div><h2>Beyond work</h2>
+    <div class="skills">
+      <div class="card"><span class="tg">Motorsport</span><h3>Formula 1</h3><p>I follow Formula 1 closely and keep up with every race of the current season. It sits naturally alongside my time in Formula SAE at Western Sydney University, where I designed a suspension mounting bracket.</p></div>
+      <div class="card"><span class="tg">Coaching</span><h3>Swimming instructor</h3><p>I've taught swimming to everyone from young kids to adults. It taught me to explain things clearly, stay patient and adapt my approach to each person, which I bring into team projects.</p></div>
+      <div class="card"><span class="tg">Volunteering</span><h3>Zero Plastic</h3><p>I volunteer with Zero Plastic, helping run campaigns, community outreach and cleanup drives that aim to cut down plastic waste.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="cta">
+      <h2>Let's build something.</h2>
+      <p>Open to graduate engineering roles across Australia. Happy to relocate. Full Australian working rights.</p>
+      <div class="row"><a class="btn w" href="mailto:dinukwijesinghe12@gmail.com">dinukwijesinghe12@gmail.com</a><a class="btn o" href="https://www.linkedin.com/in/dinuk-wijesinghe-96963825a">LinkedIn</a></div>
+    </div>
+  </section>
+</div>
+</main>
+<footer>© Dinuk Ashan Wijesinghe · Mechatronics, Robotics &amp; Automation Engineering</footer>
+
+<!-- project detail view -->
+<div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+  <div class="dbar"><div class="wrap">
+    <button type="button" id="dBack"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg>All projects</button>
+    <div class="navp"><button type="button" id="dPrev">← Prev</button><button type="button" id="dNext">Next →</button></div>
+  </div></div>
+  <div class="wrap" id="dContent"></div>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Enlarged figure">
+  <button type="button" class="x" id="lbClose">Close</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</dialog>
+
+<script>
+var P = [
+{
+  id:"ur3-perception", cat:["Robotics & Vision"], size:"feature",
+  title:"Multimodal vision-based perception for a UR3 cobot",
+  badge:"Honours thesis · HD", thumb:"img/thesis-demo-poster.jpg",
+  blurb:"An RGB-D pipeline in ROS 2 that detects objects with YOLOv8, localises them in 3D from RealSense depth, and explains the result through an LLM layer. Tested in Gazebo and on real hardware.",
+  meta:["ROS 2","YOLOv8","RealSense D435","Gazebo"],
+  facts:[["Unit","ENGR4042 Honours"],["Period","Sep 2025 – Jun 2026"],["Role","Sole researcher"],["Supervisor","Dr Karthick Thiyagarajan"]],
+  hero:{video:"img/thesis-demo.mp4", poster:"img/thesis-demo-poster.jpg"},
+  kpis:[["94.8%","Detection accuracy"],["±10 mm","Distance accuracy"],["0.85","Model F1, all classes"],["0.91","Best confidence (orange)"]],
+  body:'<h3>The problem</h3><p>A cobot can\'t work safely next to people if it only knows <em>what</em> an object is. It also needs to know <em>where</em> the object is, and whether that answer can be trusted. Many systems stop at the detection label.</p><h3>What I built</h3><ul><li><strong>Detect:</strong> trained a YOLOv8 model on 16 fruit classes and streamed it through ROS 2.</li><li><strong>Localise:</strong> read RealSense depth at the bounding-box centre and converted it to camera-frame XYZ.</li><li><strong>Explain:</strong> passed label, confidence and XYZ through a prompt template so an LLM could describe the result to non-expert users.</li><li><strong>Validate:</strong> ran a 30-trial Gazebo baseline, then tested on a UR3 with a Raspberry Pi 4 under good and dull lighting.</li></ul><h3>What I found</h3><ul><li>Visually distinct objects (orange, pineapple) transferred well from simulation to hardware.</li><li>Dull lighting cut orange confidence from 0.91 to 0.30, and similar shapes caused apple/pear and watermelon/cucumber confusion.</li><li>In simulation, detection worked in 80% of trials, but the full detect-localise-explain chain completed in 56.7%. That gap became the core finding: <strong>detection alone is not perception</strong>.</li></ul><h3>What I\'d do next</h3><ul><li>Train on a larger real + synthetic dataset covering lighting, angles and backgrounds.</li><li>Sample depth across the whole bounding box to reject invalid readings.</li><li>Feed confidence and depth validity into the robot\'s grasp decision.</li></ul>',
+  side:'<div class="box"><h4>Pipeline</h4><table class="tbl"><tr><td>01</td><td>RealSense RGB + depth → ROS 2</td></tr><tr><td>02</td><td>YOLOv8 detection</td></tr><tr><td>03</td><td>Depth lookup → XYZ</td></tr><tr><td>04</td><td>LLM explanation node</td></tr></table></div><div class="box"><h4>Simulation, 30 trials</h4><table class="tbl"><tr><td>Classification success</td><td>56.7%</td></tr><tr><td>Misclassification</td><td>23.3%</td></tr><tr><td>Non-detection</td><td>20.0%</td></tr><tr><td>Full pipeline success</td><td>56.7%</td></tr></table></div>',
+  gallery:[["img/detections.jpg","Live detections with XYZ overlay on the real rig"],["img/ur3-orange.jpg","UR3 with RealSense D435 over an orange","tall"],["img/ur3-apple.jpg","UR3 positioned over an apple target","tall"],["img/gazebo.jpg","Gazebo baseline before moving to hardware"],["img/sim-vs-real.jpg","Simulation vs real-world full-pipeline success"],["img/confusion.jpg","Normalised confusion matrix"],["img/f1-curve.jpg","F1–confidence curve: 0.85 at 0.676"],["img/dull-orange.jpg","Dull lighting: orange confidence fell to 0.30"]]
+},
+{
+  id:"puma-560", cat:["Robotics & Vision","Controls"],
+  title:"PUMA 560: PD joint control and trajectory planning",
+  badge:"MECH4004 · Team of 2", thumb:"img/puma-joints.jpg", fit:true,
+  blurb:"Independent PD controllers and trapezoidal/triangular trajectory planners for the first three joints of a PUMA 560, built in Simulink.",
+  meta:["Simulink","PD control","Trajectory planning"],
+  facts:[["Unit","MECH4004 Robotics"],["Team","2 (with S. Wadasinghe)"],["Tools","MATLAB · Simulink"],["Scope","Joints 1–3"]],
+  hero:{img:"img/puma-joints.jpg"},
+  kpis:[["3","Joints controlled"],["ζ = 1","Critically damped design"],["±0.05 rad","Joint 1 tracking error"],["100%","Max-speed test case"]],
+  body:'<h3>Goal</h3><p>Move the PUMA 560 end-effector between user-defined joint positions, at a chosen percentage of maximum speed, with smooth motion and minimal tracking error.</p><h3>Approach</h3><ul><li>Calculated each link\'s effective inertia with the parallel axis theorem.</li><li>Derived motor-level PD gains from the closed-loop transfer function, designing for critical damping (ζ = 1).</li><li>Derived each joint\'s maximum velocity and acceleration from the motor back-EMF constant, gear ratio and torque limit.</li><li>Generated trapezoidal velocity profiles for large moves and triangular profiles for small ones, switching on Δq &gt; q̇²max / q̈max.</li><li>Logged a 15-channel output and post-processed position, velocity and acceleration for each joint in MATLAB.</li></ul><h3>Results</h3><ul><li>All three joints converged smoothly to their targets with minimal overshoot.</li><li>Joint 1 held a steady error of about 0.05 rad. Joint 3, the lightest, peaked near −0.15 rad under high initial acceleration.</li><li>The independent-joint assumption ignores coupling between joints. The fix I identified: velocity feedforward and per-joint gain refinement.</li></ul>',
+  side:'<div class="box"><h4>Controller gains</h4><div class="tblwrap"><table class="tbl"><tr><th>Joint</th><th>K</th><th>Kp</th><th>Kv</th></tr><tr><td>1</td><td>3.161</td><td>7.118</td><td>0.137</td></tr><tr><td>2</td><td>3.512</td><td>4.461</td><td>−0.001</td></tr><tr><td>3</td><td>3.676</td><td>2.610</td><td>−0.106</td></tr></table></div></div><div class="eq">ωn² = K·Kp / Tm\nζ = (1 + K·Kv) / (2·ωn·Tm)</div>',
+  gallery:[["img/puma-joints.jpg","Desired vs actual joint positions and velocities"],["img/puma-errors.jpg","Joint position tracking errors"],["img/puma-simulink.jpg","Independent joint control model in Simulink"],["img/puma-traj.jpg","Joint trajectories for the test move"]]
+},
+{
+  id:"dc-motor-pid", cat:["Controls"],
+  title:"DC motor speed control with PID",
+  badge:"Control systems", thumb:"img/pid-step.jpg", fit:true,
+  blurb:"A first-principles DC motor model in MATLAB, with a Simulink PID loop tuned across four gain sets and tested against a load disturbance.",
+  meta:["MATLAB","Simulink","PID"],
+  facts:[["Tools","MATLAB · Simulink"],["Solver","ode45 · 10 s"],["Gain sets","P · PI · PID · Aggressive"],["Disturbance","Load step at t = 5 s"]],
+  hero:{img:"img/pid-step.jpg"},
+  kpis:[["0.99 s","Rise time"],["3.21 s","Settling time"],["≈ 0%","Overshoot"],["0.000","Steady-state error"]],
+  body:'<h3>Model</h3><p>I built the motor model from its armature and mechanical transfer functions, then closed the back-EMF loop to get the plant. Open loop, 1 V gives only 0.24 rad/s, so the motor needs feedback to track a speed reference.</p><div class="eq">G(s) = ω(s) / V(s) = 0.1 / (0.01s² + 0.14s + 0.41)</div><h3>Controller study</h3><ul><li><strong>P-only</strong> never reached the reference, so rise and settling time are undefined.</li><li><strong>PI</strong> removed the steady-state error, with a 0.97 s rise and 3.23 s settling.</li><li><strong>PID</strong> gave a 0.99 s rise, 3.21 s settling and practically zero overshoot.</li><li><strong>Aggressive PID</strong> (Kp 10, Ki 15, Kd 0.2) cut the rise to 0.70 s and settling to 3.03 s.</li></ul><h3>Disturbance rejection</h3><p>A load-torque step at t = 5 s pulled speed down about 7%. The integral action then drove it back to the reference.</p><p>The whole study is scripted, from parameters and transfer function to gain sweep, CSV results and plots, so it reruns in one step.</p>',
+  side:'<div class="box"><h4>Gain comparison</h4><div class="tblwrap"><table class="tbl"><tr><th>Set</th><th>Rise</th><th>Settle</th><th>OS</th></tr><tr><td>P-only</td><td>n/a</td><td>n/a</td><td>0%</td></tr><tr><td>PI</td><td>0.97 s</td><td>3.23 s</td><td>0%</td></tr><tr><td>PID</td><td>0.99 s</td><td>3.21 s</td><td>≈0%</td></tr><tr><td>Aggressive</td><td>0.70 s</td><td>3.03 s</td><td>≈0%</td></tr></table></div></div>',
+  gallery:[["img/pid-step.jpg","Closed-loop step response"],["img/pid-disturbance.jpg","Zoomed disturbance response: ~7% dip, then recovery"],["img/pid-simulink.jpg","Simulink loop with load-disturbance input"],["img/pid-scope.jpg","Simulink scope: reference vs motor speed"]]
+},
+{
+  id:"tricycle-pf", cat:["Robotics & Vision","Controls"],
+  title:"Tricycle robot kinematics and particle filter localisation",
+  badge:"MECH4003 · Team of 2", thumb:"img/pf-path.jpg", fit:true,
+  blurb:"Two drivetrain kinematic models compared in Simulink, plus a 1,000-particle filter that localises the robot from noisy range and bearing data.",
+  meta:["Simulink","Particle filter","MATLAB"],
+  facts:[["Unit","MECH4003 Mobile Robotics"],["Team","2 (with S. Wadasinghe)"],["Particles","1,000"],["Landmarks","4 (range + bearing)"]],
+  hero:{img:"img/pf-path.jpg"},
+  kpis:[["1,000","Particles"],["< 0.1 m","Position error, 200 steps"],["8° → <1°","Heading error"],["2","Drivetrains compared"]],
+  body:'<h3>Kinematics</h3><p>We modelled a tricycle robot with front-wheel steering in two variants, front-wheel drive and rear-wheel drive. We simulated each under constant, linearly varying, and combined velocity/steering profiles.</p><div class="eq">Rear-wheel drive:  ẋ = v·cosθ   ẏ = v·sinθ   θ̇ = (v/d)·tanα</div><ul><li>Rear-wheel drive tracked more smoothly and turned tighter, because steering and propulsion are decoupled.</li><li>Front-wheel drive responded faster to steering but was more sensitive to steering changes.</li></ul><h3>Particle filter</h3><ul><li>Initialised 1,000 particles uniformly over a 5 × 5 m area with θ ∈ [0, π].</li><li>Propagated each particle through the motion model with sampled velocity and steering noise.</li><li>Weighted particles with a <strong>log-likelihood</strong> over range and bearing to four landmarks. This avoids numerical underflow, with angle wrapping on the bearing.</li><li>Resampled each step, with an automatic re-initialisation if the weights collapsed.</li></ul><p>The estimated path stayed aligned with ground truth, and heading error converged from about 8° towards zero.</p>',
+  side:'<div class="box"><h4>Noise model</h4><table class="tbl"><tr><td>Range σ²</td><td>1×10⁻⁵ m²</td></tr><tr><td>Bearing σ²</td><td>7.62×10⁻⁴ rad²</td></tr><tr><td>Velocity σ²</td><td>1×10⁻⁴</td></tr><tr><td>Steering σ²</td><td>9×10⁻⁴</td></tr><tr><td>Time step</td><td>0.05 s · 10 s</td></tr></table></div>',
+  gallery:[["img/pf-path.jpg","Actual vs estimated path with landmarks"],["img/pf-theta.jpg","Heading error converging over time"],["img/traj-circle.jpg","Constant velocity and steering: circular path"],["img/traj-spiral.jpg","Linearly varying steering: spiral transition"]]
+},
+{
+  id:"cnn-fuzzy", cat:["Robotics & Vision"],
+  title:"CNN image classifier and fuzzy logic controller",
+  badge:"MECH4004 · Individual", thumb:"img/cnn-tests.jpg", fit:true,
+  blurb:"A 16-layer convolutional network trained in MATLAB on 1,316 images, plus a hand-worked Mamdani fuzzy controller with two defuzzification methods.",
+  meta:["MATLAB","Deep Learning Toolbox","Fuzzy logic"],
+  facts:[["Unit","MECH4004 Robotics, Assignment 2"],["Type","Individual"],["Dataset","1,316 images, 2 classes"],["Network","16 layers, SGDM"]],
+  hero:{img:"img/cnn-training.jpg"},
+  kpis:[["87.5%","Test accuracy (7 of 8)"],["66.5%","Validation accuracy"],["40","Training epochs"],["600","Training iterations"]],
+  body:'<h3>Part 1: CNN classifier</h3><p>I designed a 16-layer CNN in MATLAB\'s Deep Network Designer to classify images into two classes, then trained and evaluated it end to end.</p><ul><li><strong>Architecture:</strong> a 90×90×3 input, then three convolution blocks (8, 16 and 32 filters) with batch normalisation, ReLU and max pooling, then dropout (0.5), a fully connected layer and softmax.</li><li><strong>Training:</strong> SGDM at a 0.001 learning rate, halved every 10 epochs, with mini-batches of 32 for 40 epochs and a 70/30 train/validation split.</li><li><strong>Experiments:</strong> I compared the Adam optimiser, data augmentation and deeper variants, and documented why each did or didn\'t improve validation accuracy.</li></ul><h3>Results</h3><p>Validation accuracy reached 66.5% and the model classified 7 of 8 unseen test images correctly. Most correct predictions had over 90% confidence. My error analysis traced the failures to pose, lighting and background, which pointed to data diversity as the next lever, not a deeper network.</p><h3>Part 2: Fuzzy logic controller</h3><p>I worked through a three-rule Mamdani fuzzy controller by hand: singleton fuzzification, min/max operators for AND/OR, and rule aggregation. I then compared Centre of Area and Mean of Maximum defuzzification on the same inputs.</p>',
+  side:'<div class="box"><h4>Validation confusion matrix</h4><div class="tblwrap"><table class="tbl"><tr><th></th><th>Pred A</th><th>Pred B</th></tr><tr><td>True A</td><td>134</td><td>63</td></tr><tr><td>True B</td><td>69</td><td>128</td></tr></table></div></div>',
+  gallery:[["img/cnn-training.jpg","Training progress: accuracy and loss"],["img/cnn-confusion.jpg","Validation confusion matrix"],["img/cnn-tests.jpg","Predictions on unseen test images"],["img/cnn-network.jpg","16-layer network in Deep Network Designer"],["img/fuzzy-mf.jpg","Fuzzy membership functions, worked by hand"]]
+},
+{
+  id:"conveyor-gearbox", cat:["Mechanical Design"],
+  title:"Packing-line conveyor with a two-stage gear reducer",
+  badge:"MECH3005 · Team of 4", thumb:"img/gear-cad.jpg", fit:true,
+  blurb:"A 0.5 m/s conveyor driven through a 12.25:1 two-stage reducer, sized by hand calculation and validated with FEA and motion studies.",
+  meta:["SolidWorks","FEA","Gear design"],
+  facts:[["Unit","MECH3005 Mechanical Design"],["Team","4 engineers"],["Period","May – Jul 2025"],["Output","12 manufacturing drawings"]],
+  hero:{img:"img/gear-cad.jpg"},
+  kpis:[["12.25 : 1","Total reduction"],["95.5%","System efficiency"],["1.25","Min shaft safety factor"],["0.08 mm","Housing deflection"]],
+  body:'<h3>Brief</h3><p>Design a compact, low-maintenance packing-line conveyor: 0.5 m/s ± 1% belt speed, more than 95% efficiency and a 40,000-hour design life.</p><h3>Design</h3><ul><li>Drivetrain: 7.5 kW IE3 induction motor, then a V-belt (1.15:1), then two gear stages (20/70 and 22/77 teeth, module 2 mm, 3.5:1 each), driving a 150 mm roller.</li><li>Gears and shafts in AISI 1045 steel; an aluminium 6061-T6 housing cut weight by 30% compared with steel.</li><li>SKF 6206 bearings (50,000-hour L10 life) and a Lovejoy jaw coupling to absorb misalignment and shock loads.</li></ul><h3>Validation</h3><ul><li>Hand calculations covered roller speed, torque, gear geometry, bending stress, shaft and key sizing, and bearing life.</li><li>SolidWorks FEA used a 10,000-element mesh at 318 N·m. Peak shaft stress was 200 MPa against a 250 MPa yield, and gear contact stress was 150 MPa against 180 MPa allowable.</li><li>The motion study confirmed 0.496–0.504 m/s belt speed (±0.8%) over 100 cycles.</li></ul>',
+  side:'<div class="box"><h4>Key numbers</h4><table class="tbl"><tr><td>Belt speed</td><td>0.5 m/s ± 0.8%</td></tr><tr><td>Roller speed</td><td>63.7 rpm</td></tr><tr><td>Output torque</td><td>318 N·m</td></tr><tr><td>Bearing life</td><td>&gt; 50,000 h</td></tr><tr><td>Gearbox envelope</td><td>200 × 300 mm</td></tr></table></div>',
+  gallery:[["img/gear-cad.jpg","Two-stage reducer with belt drive (CAD)"],["img/gear-housing.jpg","Enclosed gearbox housing"],["img/gear-calcs.jpg","Hand calculations: conveyor speed and gear ratio"],["img/gear-fea.jpg","FEA stress plot"]]
+},
+{
+  id:"smart-ebike", cat:["Mechanical Design"],
+  title:"Smart e-bike: frame design and DFM/DFA",
+  badge:"MECH3006 · Team leader", thumb:"img/ebike-assembly.jpg", fit:true,
+  blurb:"A modular campus e-bike in SolidWorks. I led a team of four and owned the frame, which was validated by FEA and documented to AS 1100.",
+  meta:["SolidWorks","FEA","DFM / DFA"],
+  facts:[["Unit","MECH3006 Mechatronics Design"],["Role","Team leader · frame design"],["Material","Al 6061-T6 frame"],["Period","Oct 2025"]],
+  hero:{img:"img/ebike-assembly.jpg"},
+  kpis:[["3.2","Frame factor of safety"],["78 MPa","Peak frame stress at 882 N"],["≤ 5 kg","Frame mass target"],["2","Bolt sizes in the whole bike"]],
+  body:'<h3>Problem</h3><p>Students need cheap, simple transport between campus buildings. Existing e-bikes are expensive, complex and hard to maintain.</p><h3>My role</h3><p>I led the team and designed the frame. I built it with sweep and loft features, added mounting points for the seat, fork and rear wheel, and designed it for extrusion and TIG welding.</p><h3>Design principles applied</h3><ul><li><strong>DFA:</strong> three modular sections (frame, fork, drivetrain) and only two bolt sizes (M6, M8), with chamfered joints that self-align.</li><li><strong>DFM:</strong> simple geometry for CNC machining and welding, with fillets to reduce stress and tool wear.</li><li><strong>DFD and sustainability:</strong> wheels, fork and crank come off with basic tools, and the materials are recyclable.</li></ul><h3>Validation</h3><p>Static FEA with a 90 kg rider (882 N) on the frame and 250 N on the crank kept every component above a factor of safety of 3.</p>',
+  side:'<div class="box"><h4>FEA summary</h4><div class="tblwrap"><table class="tbl"><tr><th>Part</th><th>Load</th><th>σmax</th><th>FOS</th></tr><tr><td>Frame</td><td>882 N</td><td>78 MPa</td><td>3.2</td></tr><tr><td>Crank</td><td>250 N</td><td>82 MPa</td><td>3.0</td></tr><tr><td>Fork</td><td>200 N</td><td>61 MPa</td><td>4.1</td></tr></table></div></div>',
+  gallery:[["img/ebike-assembly.jpg","Full e-bike assembly"],["img/ebike-frame.jpg","Aluminium frame (my design)"],["img/ebike-exploded.jpg","Exploded view for assembly and maintenance"],["img/ebike-drawing.jpg","A3 general arrangement drawing to AS 1100"],["img/ebike-fea-strain.jpg","Static FEA under an 882.9 N rider load (equivalent strain)"]]
+},
+{
+  id:"stick-blender", cat:["Mechanical Design"],
+  title:"Stick blender: reverse engineering and A2 drawing set",
+  badge:"CAD & drawings", thumb:"img/blender-exploded.jpg", fit:true,
+  blurb:"I took a consumer stick blender apart, modelled all 18 parts and produced a full A2 drawing package with a bill of materials.",
+  meta:["SolidWorks","AS 1100","BOM"],
+  facts:[["Drawing no.","KHB-000-000"],["Date","24/10/2023"],["Sheets","A2 · Rev A"],["Parts","18 items"]],
+  hero:{img:"img/blender-section.jpg"},
+  kpis:[["18","Components modelled"],["3","A2 drawing sheets"],["8","Manufacturing processes specified"],["Rev A","Initial release"]],
+  body:'<h3>What I did</h3><p>I took the product apart, measured every component and rebuilt it in SolidWorks. Then I documented it the way a manufacturer would: a general assembly, a full section view with ballooned items, and dimensioned detail views.</p><h3>Bill of materials</h3><p>Each of the 18 items has a part number, material, manufacturing process and surface finish. The parts include:</p><ul><li>injection-moulded cross-linked polyethylene shells</li><li>a CNC-turned ferritic stainless shaft</li><li>a stamped copper washer and a coiled conical spring</li><li>a laminated and plated PCB with an HASL finish</li></ul><h3>Why it matters</h3><p>Reverse engineering trains you to see design intent: why a part is moulded rather than machined, where the tolerances matter, and how the assembly comes apart for service.</p>',
+  side:'',
+  gallery:[["img/blender-section.jpg","Full assembly section view + BOM"],["img/blender-upper-assembly.jpg","Upper assembly GA, sections and details"],["img/blender-full-section.jpg","Dimensioned section with detail views"]]
+},
+{
+  id:"cnc-handwheel", cat:["Mechanical Design"],
+  title:"CNC hand-wheel: CAM programming, machining and cost model",
+  badge:"ENGR2001 · Team of 4", thumb:"img/cnc-part.jpg",
+  blurb:"A hand-wheel taken from SolidWorks model to SolidCAM toolpaths, Boxford simulation and real 3-axis machining, with a full time and cost plan for 1,000 parts.",
+  meta:["SolidCAM","CNC milling","GD&T"],
+  facts:[["Unit","ENGR2001 Automated Manufacturing"],["Team","4 engineers"],["Period","Sep – Nov 2024"],["Machine","3-axis CNC mill"]],
+  hero:{img:"img/cnc-part.jpg"},
+  kpis:[["±0.1 mm","Machined tolerance"],["16.24 min","Cycle time per part"],["39.06 min","Predicted tool life"],["−15%","Rework"]],
+  body:'<h3>Process</h3><ul><li>Modelled the Ø80 mm hand-wheel in SolidWorks, with a central bore and 5 mm fillets, machined from a 100 × 100 × 20 mm aluminium block.</li><li>Imported it into SolidCAM and defined the stock, machine and a Ø10 mm carbide-insert end mill. Then I built facing, pocketing and drilling operations and generated G-code.</li><li>Verified the toolpaths in Boxford simulation before cutting, then machined the parts on a 3-axis mill.</li></ul><h3>Mechanics of machining</h3><p>We used Taylor\'s tool-life equation at a cutting speed of 160 m/min and a feed of 800 mm/min. Setup, machining and tool-change time set the cycle time per part, and the cost model scaled that to a batch of 1,000 (270.67 machine hours) across material, labour, overhead and tooling.</p><div class="eq">T = (C / V)^(1/n) = (400 / 160)^(1/0.25) = 39.06 min\nt_c = 4 + 10.85 + 5·(10.85 / 39.06) = 16.24 min</div><h3>Problems we solved</h3><ul><li><strong>Insert wear:</strong> retuned cutting speed and feed to balance removal rate against tool life.</li><li><strong>Setup time:</strong> designed a fixture for repeatable workpiece alignment.</li><li><strong>Simulation vs reality:</strong> refined NC parameters and re-simulated until the cut matched.</li></ul>',
+  side:'<div class="box"><h4>Toolchain</h4><table class="tbl"><tr><td>CAD</td><td>SolidWorks</td></tr><tr><td>CAM</td><td>SolidCAM → G-code</td></tr><tr><td>Verification</td><td>Boxford simulation</td></tr><tr><td>Machine</td><td>3-axis CNC mill</td></tr><tr><td>Tooling</td><td>Ø10 mm carbide-insert end mill</td></tr></table></div>',
+  gallery:[["img/cnc-part.jpg","Machined hand-wheel parts"],["img/cnc-cad.jpg","SolidWorks model"],["img/cnc-drawing.jpg","Engineering drawing with section views"],["img/cnc-toolpath.jpg","SolidCAM toolpaths"],["img/cnc-sim.jpg","Machining simulation"],["img/cnc-calcs.jpg","Tool-life and cycle-time calculation"]]
+},
+{
+  id:"smartsense-ux", cat:["Software & UX"],
+  title:"SmartSense: AI study companion prototype",
+  badge:"HCI · Individual", thumb:"img/ux-dashboard.jpg",
+  blurb:"A high-fidelity Figma prototype of an adaptive study app with focus/fatigue prompts, a voice AI tutor and spaced-repetition revision.",
+  meta:["Figma","HCI","Usability testing"],
+  facts:[["Type","Individual project"],["Tool","Figma"],["Scenarios","3 core flows"],["Evaluation","SUS / CSUQ · think-aloud"]],
+  hero:{img:"img/ux-dashboard.jpg"},
+  kpis:[["3","Scenarios prototyped"],["8–12","Planned test participants"],["3","Scored user tasks"],["SUS","Usability benchmark"]],
+  body:'<h3>Concept</h3><p>Most study tools are static. SmartSense adapts to the student, using speech, behaviour and engagement signals to adjust content, suggest breaks and schedule revision. I narrowed the scope to a demo-ready front-end that shows those adaptive states clearly.</p><h3>Three scenarios</h3><ul><li><strong>Adaptive study:</strong> a low-engagement prompt lets the student take a break, simplify the content or keep going. The student stays in control.</li><li><strong>Voice AI tutor:</strong> the student speaks an answer, sees a live transcript, and the difficulty adapts after each response.</li><li><strong>Smart revision:</strong> flashcards with confidence ratings that set the next review time.</li></ul><h3>Evaluation plan</h3><p>I wrote a replicable usability test: moderated think-aloud sessions, task success and time, SUS/CSUQ ratings, NASA-TLX workload and interview coding. Results are benchmarked against Quizlet, Notion and Anki.</p><p>I was explicit about scope: the AI and emotion sensing are simulated front-end states, and I don\'t claim any learning impact until the study has been run.</p>',
+  side:'<div class="box"><h4>Design principles</h4><table class="tbl"><tr><td>Visible system status</td></tr><tr><td>User control over AI suggestions</td></tr><tr><td>Low cognitive load</td></tr><tr><td>Consistent, component-based UI</td></tr></table></div>',
+  gallery:[["img/ux-dashboard.jpg","Dashboard with progress and mood check-in"],["img/ux-tired.jpg","Adaptive study: low-engagement prompt"],["img/ux-simplified.jpg","Simplified learning mode"],["img/ux-voice.jpg","Voice AI tutor"],["img/ux-revision.jpg","Smart revision flashcards"],["img/ux-break.jpg","Guided break timer"]]
+},
+{
+  id:"virtual-ground", cat:["Electronics"],
+  title:"Op-amp virtual ground: simulated, built and measured",
+  badge:"Instrumentation · Individual", thumb:"img/instru-physical.jpg",
+  blurb:"A 2.5 V virtual ground from a single 5 V supply using an LM741 buffer. I designed it in Tinkercad and Multisim, then built it and tested it under load.",
+  meta:["LM741","Multisim","Arduino"],
+  facts:[["Unit","Instruments & Measurements"],["Type","Individual practical"],["Supply","Arduino 5 V (4.95 V measured)"],["Tools","Tinkercad · Multisim · DMM"]],
+  hero:{img:"img/instru-tinkercad.jpg"},
+  kpis:[["2.50 V","Virtual ground achieved"],["23.9 mA","Max output current"],["≥ 200 Ω","Load range holding 2.5 V"],["3","Build stages"]],
+  body:'<h3>Goal</h3><p>Create a stable mid-rail reference from a single supply, so signals can swing both above and below "ground". This is common in audio and data-acquisition front-ends.</p><h3>Design</h3><p>A 1 kΩ / 1 kΩ divider sets the midpoint, and an LM741 wired as a voltage follower buffers it into a low-impedance reference.</p><div class="eq">Vout = Vin · R2 / (R1 + R2) = 2.5 V</div><h3>Testing</h3><ul><li>I verified the circuit in Tinkercad and Multisim, then built it on a breadboard powered from an Arduino.</li><li>A load sweep from 10 Ω to 2 MΩ found the maximum output current: 23.9 mA at 10 Ω.</li><li>The reference held 2.5 V for loads of 200 Ω and above. Below that, the op-amp\'s current limit pulled it down. Simulated and measured results matched.</li><li>I also characterised the op-amp\'s input bias current.</li></ul>',
+  side:'<div class="box"><h4>Load sweep (measured)</h4><div class="tblwrap"><table class="tbl"><tr><th>R load</th><th>V</th><th>I</th></tr><tr><td>10 Ω</td><td>0.239 V</td><td>23.9 mA</td></tr><tr><td>50 Ω</td><td>1.18 V</td><td>23.6 mA</td></tr><tr><td>100 Ω</td><td>2.28 V</td><td>22.8 mA</td></tr><tr><td>200 Ω</td><td>2.50 V</td><td>12.5 mA</td></tr><tr><td>1 kΩ</td><td>2.50 V</td><td>2.5 mA</td></tr></table></div></div>',
+  gallery:[["img/instru-tinkercad.jpg","Tinkercad build reading 2.50 V"],["img/instru-multisim.jpg","Multisim virtual ground circuit"],["img/instru-physical.jpg","Physical breadboard build"],["img/instru-ivr.jpg","Output current vs load resistance"]]
+},
+{
+  id:"electronics-lab", cat:["Electronics"],
+  title:"Electronics lab work: PCB layout and three-phase load testing",
+  badge:"Hardware labs", thumb:"img/labvolt.jpg",
+  blurb:"A two-layer PCB designed around a 1 kΩ / 2 kΩ resistor network and two DIP ICs, and hands-on wiring and measurement on a Festo LabVolt power-systems rig.",
+  meta:["PCB design","LabVolt","Data acquisition"],
+  facts:[["PCB","Two layers, top + bottom routing"],["Date","Sep 2025"],["Rig","Festo LabVolt modules"],["Instruments","Data acquisition interface"]],
+  hero:{img:"img/labvolt.jpg"},
+  kpis:[["2","Copper layers routed"],["2","DIP IC footprints"],["3-phase","Resistive load tested"],["PC","Live DAQ readout"]],
+  body:'<h3>PCB layout</h3><p>I laid out a two-layer board: a grid of 1 kΩ and 2 kΩ resistors feeding two 8-pin DIP ICs, with a pin header for off-board connections. Most routing is on the top layer, and the bottom layer handles crossings so the board needs no jumper wires.</p><h3>Power-systems lab</h3><p>In the Festo LabVolt lab I wired a three-phase supply through a resistive load module into the data acquisition interface. I then read the voltages and currents live on a PC, so I was building and checking real circuits rather than only simulating them.</p>',
+  side:'',
+  gallery:[["img/pcb-top.jpg","PCB top layer"],["img/pcb-bottom.jpg","PCB bottom layer"],["img/labvolt.jpg","LabVolt rig wired to the data acquisition interface"]]
+},
+{
+  id:"omron-amr", cat:["Robotics & Vision"],
+  title:"Autonomous mobile robot navigation (OMRON)",
+  badge:"Industry course · 2025", thumb:"img/cert-amr.jpg", fit:true,
+  blurb:"An industry course offered by OMRON through Western Sydney University on how autonomous mobile robots map, localise and navigate safely around people.",
+  meta:["AMRs","A* path planning","Particle filter"],
+  facts:[["Offered by","OMRON, via WSU Research & Enterprise"],["Completed","20 October 2025"],["Credential","Certificate of Completion"],["Certificate no.","163716051"]],
+  hero:{img:"img/cert-amr.jpg"},
+  kpis:[["AMR","Industrial mobile robots"],["2025","Completed October"],["OMRON","Industry partner"],["✓","Certified"]],
+  body:'<h3>About the course</h3><p>I completed OMRON\'s autonomous mobile robot navigation course, delivered through Western Sydney University\'s Division of Research and Enterprise. It covers how industrial AMRs move material around factories and warehouses without fixed tracks or guide wires.</p><h3>Path planning and localisation</h3><p>The work centred on the two core problems of mobile robot navigation: planning a collision-free route with A* search, and estimating the robot\'s position with a particle filter.</p><h3>Why it fits my work</h3><p>It builds directly on my coursework in mobile robotics. In MECH4003 I modelled tricycle-drive kinematics and built a particle filter that localises a robot from noisy range and bearing data. My honours thesis looked at the same question from the perception side: a robot has to know where things are, and how far to trust that, before it can act safely around people.</p><p>Industrial AMRs combine those pieces at production scale: mapping, localisation, path planning and safety-rated obstacle avoidance in spaces shared with people.</p>',
+  side:'<div class="box"><h4>Related projects</h4><table class="tbl"><tr><td><a href="#tricycle-pf">Tricycle kinematics &amp; particle filter</a></td></tr><tr><td><a href="#ur3-perception">UR3 cobot perception (thesis)</a></td></tr><tr><td><a href="#puma-560">PUMA 560 trajectory planning</a></td></tr></table></div>',
+  gallery:[["img/cert-amr.jpg","Certificate of Completion: Introduction to Autonomous Mobile Robots"]]
+}
+];
+var EXTRA = [
+  {title:"PLC ladder logic projects", tag:"Industrial automation", cat:"Controls", points:["Programmed PLC control logic in ladder logic","Conveyor start/stop and seal-in control"], chips:["PLC","Ladder logic"],
+   svg:'<svg viewBox="0 0 400 225" role="img" aria-label="PLC ladder logic"><path d="M90 35v155M310 35v155" stroke="var(--mut)" stroke-width="5" stroke-linecap="round"/><g fill="none" stroke="var(--a)" stroke-width="5" stroke-linecap="round"><path d="M90 65h60M162 65h56M242 65h68"/><path d="M150 50v30M162 50v30"/><path d="M90 112h60M162 112h56M242 112h68"/><path d="M150 97v30M162 97v30"/><path d="M90 160h60M162 160h56M242 160h68"/><path d="M150 145v30M162 145v30"/></g><g fill="none" stroke="var(--b)" stroke-width="5"><circle cx="230" cy="65" r="12"/><circle cx="230" cy="112" r="12"/><circle cx="230" cy="160" r="12"/></g></svg>'}
+];
+
+var grid=document.getElementById('grid'), filters=document.getElementById('filters');
+var cats=["All"]; P.forEach(function(p){p.cat.forEach(function(c){if(cats.indexOf(c)<0)cats.push(c)})});
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+cats.forEach(function(c,i){
+  var b=document.createElement('button'); b.type='button';
+  var n=c==="All"?P.length:P.filter(function(p){return p.cat.indexOf(c)>=0}).length;
+  b.innerHTML=esc(c)+'<span>'+n+'</span>'; b.setAttribute('aria-pressed',i===0?'true':'false');
+  b.addEventListener('click',function(){
+    filters.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');
+    grid.querySelectorAll('.card').forEach(function(card){
+      var ok=c==="All"||card.dataset.cat.split('|').indexOf(c)>=0; card.hidden=!ok;
+      card.classList.toggle('feature', ok && card.dataset.size==='feature');
+      card.classList.toggle('wide', ok && c==="All" && card.dataset.size==='wide');
+      card.classList.toggle('full', ok && c==="All" && card.dataset.size==='full');
+    });
+  });
+  filters.appendChild(b);
+});
+
+P.forEach(function(p){
+  var b=document.createElement('a'); b.href='#'+p.id;
+  var feat=p.size==='feature';
+  b.className='card'+(feat?' feature':''); b.dataset.cat=p.cat.join('|'); b.dataset.size=feat?'feature':'';
+  var big=feat?'<div class="big">'+p.kpis.slice(0,2).map(function(k){return '<div><b>'+esc(k[0])+'</b><span>'+esc(k[1])+'</span></div>'}).join('')+'</div>':'';
+  b.innerHTML='<div class="vis"><img src="'+p.thumb+'" alt="" loading="lazy"'+(p.fit?' class="fit"':'')+'></div>'+
+    '<div class="body"><h3>'+esc(p.title)+'</h3><p class="meta">'+esc(p.badge)+'</p>'+big+'<p class="d">'+esc(p.blurb)+'</p><div class="chips">'+p.meta.map(function(m){return '<span>'+esc(m)+'</span>'}).join('')+'</div><span class="more">Read case study →</span></div>';
+  grid.appendChild(b);
+});
+EXTRA.forEach(function(e){
+  var d=document.createElement('article'); d.className='card plain feature'; d.dataset.cat=e.cat; d.dataset.size='feature';
+  d.innerHTML='<div class="vis">'+e.svg+'</div><div class="body"><h3>'+esc(e.title)+'</h3><p class="meta">'+esc(e.tag)+'</p><ul>'+e.points.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul><div class="chips">'+e.chips.map(function(c){return '<span>'+esc(c)+'</span>'}).join('')+'</div></div>';
+  grid.appendChild(d);
+});
+
+/* detail view */
+var detail=document.getElementById('detail'), dc=document.getElementById('dContent'), lastFocus=null;
+function render(p){
+  var i=P.indexOf(p), nx=P[(i+1)%P.length];
+  var hero=p.hero.video?'<video src="'+p.hero.video+'" poster="'+p.hero.poster+'" controls playsinline preload="metadata"></video>':'<button type="button" data-full="'+p.hero.img+'" style="display:block;width:100%;border:0;padding:0;background:#fff;cursor:zoom-in"><img src="'+p.hero.img+'" alt="'+esc(p.title)+'"></button>';
+  dc.innerHTML='<div class="dhero"><div class="tags">'+p.cat.concat([p.badge]).map(function(t){return '<span>'+esc(t)+'</span>'}).join('')+'</div>'+
+    '<h2 id="dTitle">'+esc(p.title)+'</h2><p class="summary">'+esc(p.blurb)+'</p>'+
+    '<div class="facts">'+p.facts.map(function(f){return '<div><small>'+esc(f[0])+'</small><strong>'+esc(f[1])+'</strong></div>'}).join('')+'</div></div>'+
+    '<div class="dmedia">'+hero+'</div>'+
+    '<div class="dbody"><div class="prose">'+p.body+'</div><aside class="side"><div class="kpis">'+p.kpis.map(function(k){return '<div class="kpi"><b>'+esc(k[0])+'</b><span>'+esc(k[1])+'</span></div>'}).join('')+'</div>'+p.side+'</aside></div>'+
+    '<h3 class="figs-title">Figures</h3><div class="gal">'+p.gallery.map(function(g){return '<figure'+(g[2]?' class="tall"':'')+'><button type="button" data-full="'+g[0]+'"><img src="'+g[0]+'" alt="'+esc(g[1])+'" loading="lazy"></button><figcaption>'+esc(g[1])+'</figcaption></figure>'}).join('')+'</div>'+
+    '<div class="nextp"><button type="button" id="dNextBig"><div><small>Next project</small><strong>'+esc(nx.title)+'</strong></div><span aria-hidden="true">→</span></button></div>';
+  document.getElementById('dNextBig').addEventListener('click',function(){location.hash=nx.id});
+  bindZoom(dc);
+}
+function route(){
+  var id=location.hash.slice(1), p=P.filter(function(x){return x.id===id})[0];
+  if(p){
+    if(!detail.classList.contains('open')) lastFocus=document.activeElement;
+    var hv=document.querySelector('.reel video'), hb=document.getElementById('heroSound'); if(hv&&!hv.muted){hv.muted=true; hb.textContent='Sound on'; hb.setAttribute('aria-pressed','false');}
+    render(p); detail.classList.add('open'); document.body.classList.add('locked'); detail.scrollTop=0;
+    document.getElementById('dBack').focus({preventScroll:true});
+  } else if(detail.classList.contains('open')){
+    detail.classList.remove('open'); document.body.classList.remove('locked');
+    dc.querySelectorAll('video').forEach(function(v){v.pause()});
+    var card=document.querySelector('#projects'); if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
+  }
+}
+function step(d){var id=location.hash.slice(1), i=P.findIndex(function(x){return x.id===id}); if(i<0)return; location.hash=P[(i+d+P.length)%P.length].id;}
+document.getElementById('dBack').addEventListener('click',function(){location.hash='projects'});
+document.getElementById('dPrev').addEventListener('click',function(){step(-1)});
+document.getElementById('dNext').addEventListener('click',function(){step(1)});
+document.addEventListener('keydown',function(e){
+  if(!detail.classList.contains('open')||document.getElementById('lb').open) return;
+  if(e.key==='Escape') location.hash='projects';
+  if(e.key==='ArrowRight') step(1);
+  if(e.key==='ArrowLeft') step(-1);
+});
+window.addEventListener('hashchange',route);
+
+/* lightbox */
+var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
+function bindZoom(root){
+  root.querySelectorAll('[data-full]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.querySelector('img'); lbImg.src=b.getAttribute('data-full'); lbImg.alt=t?t.alt:'';
+      var fc=b.closest('figure'); lbCap.textContent=fc&&fc.querySelector('figcaption')?fc.querySelector('figcaption').textContent:(t?t.alt:'');
+      try{lb.showModal()}catch(e){lb.setAttribute('open','')}
+    });
+  });
+}
+document.getElementById('lbClose').addEventListener('click',function(){lb.close()});
+lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+(function(){
+  var v=document.querySelector('.reel video'), b=document.getElementById('heroSound');
+  b.addEventListener('click',function(){
+    v.muted=!v.muted; if(!v.muted){v.currentTime=0; v.volume=1; var pr=v.play(); if(pr&&pr.catch)pr.catch(function(){});}
+    b.textContent=v.muted?'Sound on':'Mute'; b.setAttribute('aria-pressed',String(!v.muted));
+  });
+})();
+bindZoom(document.getElementById('certificates'));
+route();
+</script>
+</body>
+</html>
